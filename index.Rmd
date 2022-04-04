@@ -1,0 +1,99 @@
+---
+title: "Palmer Penguins Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    social: ["menu"]
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+# Load packages
+library(flexdashboard)
+library(tidyverse)
+library(palmerpenguins)
+library(plotly)
+library(DT)
+library(fontawesome)
+library(ggridges)
+library(ggdist)
+
+# Load data
+penguins <- palmerpenguins::penguins
+
+```
+
+Plots
+=======================================================================
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Scatter Plot of Bill Length vs Bill Depth
+
+```{r}
+
+peng_scatter <- penguins %>% 
+  na.omit() %>% 
+  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +
+  geom_jitter() +
+  scale_color_viridis_d(option = "turbo") +
+  theme_minimal() +
+  labs(x = "Bill Length (mm)",
+       y = "Bill Depth (mm)",
+       color = "Penguin Species")
+
+ggplotly(peng_scatter)
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+penguins %>%
+  mutate(sex = str_to_title(sex)) %>% 
+  na.omit() %>% 
+  ggplot(aes(body_mass_g, sex, fill = sex, color = sex)) +
+  geom_density_ridges(jittered_points = TRUE, position = "raincloud", alpha = 0.5) +
+  scale_fill_manual(values = c("dodgerblue1","orange1")) +
+  scale_color_manual(values = c("dodgerblue1","orange1")) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "Penguin Body Mass (g)",
+       y = "")
+```
+
+### Chart C
+
+```{r}
+
+penguins %>% 
+  na.omit() %>% 
+  ggplot(aes(flipper_length_mm, fill = species, color = species)) +
+  geom_dots() +
+  scale_color_viridis_d(option = "turbo") +
+  scale_fill_viridis_d(option = "turbo") +
+  facet_wrap(~species) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "Flipper Length (mm)")
+
+```
+
+Data 
+=====================================================
+
+```{r}
+
+penguins %>% 
+  datatable(extensions = "Buttons",
+            options = list(dom = "Blfrtip",
+                           buttons = c("copy","csv","excel","pdf","print")))
+
+```
+
