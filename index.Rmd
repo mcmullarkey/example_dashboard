@@ -37,6 +37,8 @@ penguins <- palmerpenguins::penguins
 
 ```
 
+Tutorial on how to knit child documents with flexdashboard: https://somtom.github.io/post/using-dynamically-rendered-r-markdown-childs-for-reports/
+
 Plots {data-navmenu="Pages"}
 =======================================================================
 
