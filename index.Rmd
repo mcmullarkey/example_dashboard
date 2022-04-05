@@ -39,6 +39,8 @@ penguins <- palmerpenguins::penguins
 
 Tutorial on how to knit child documents with flexdashboard: https://somtom.github.io/post/using-dynamically-rendered-r-markdown-childs-for-reports/
 
+Another example of fully-formed flexdashboard: https://danielpballer.github.io/2021_NFL_Moneyline_Picks/
+
 Plots {data-navmenu="Pages"}
 =======================================================================
 
