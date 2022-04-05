@@ -2,10 +2,13 @@
 title: "Palmer Penguins Dashboard"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: row
     vertical_layout: fill
-    social: ["menu"]
+    social: ["twitter","facebook","linkedin"]
     source_code: embed
+    theme:
+      version: 4
+      bootswatch: lumen
 ---
 
 ```{r setup, include=FALSE}
@@ -24,10 +27,31 @@ penguins <- palmerpenguins::penguins
 
 ```
 
-Plots
+Plots {data-navmenu="Pages"}
 =======================================================================
 
-Column {data-width=650}
+<!--sidebar {.sidebar}
+-----------------------------------------------------------------------
+
+### Penguin Stats
+
+The number of penguins in the data is `r nrow(penguins)`
+
+!-->
+
+Row
+-----------------------------------------------------------------------
+
+### Number of Penguins
+
+```{r}
+
+valueBox(nrow(penguins), icon = "fa-linux")
+
+```
+
+
+Column {.tabset}
 -----------------------------------------------------------------------
 
 ### Scatter Plot of Bill Length vs Bill Depth
@@ -48,10 +72,9 @@ ggplotly(peng_scatter)
 
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
 
-### Chart B
+
+### Raincloud Plot of Penguin Body Mass by Sex
 
 ```{r}
 
@@ -68,7 +91,7 @@ penguins %>%
        y = "")
 ```
 
-### Chart C
+### Dotplot of Distribution of Flipper Length by Species
 
 ```{r}
 
@@ -85,7 +108,7 @@ penguins %>%
 
 ```
 
-Data 
+Data {data-navmenu="Pages"}
 =====================================================
 
 ```{r}
