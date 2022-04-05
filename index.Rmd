@@ -25,6 +25,16 @@ library(ggdist)
 # Load data
 penguins <- palmerpenguins::penguins
 
+## git terminal commands for adding all of this with the directory getting created to host the webpage automatically
+
+# git init 
+# 
+# git add *
+# 
+# git commit -m "updated dashboard via terminal"
+# 
+# git push -u origin master
+
 ```
 
 Plots {data-navmenu="Pages"}
